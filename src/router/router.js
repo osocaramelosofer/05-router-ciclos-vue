@@ -10,8 +10,21 @@ const routes = [
         component: () => import(/* webpackChunkName: "AboutPage"*/ "@/modules/pokemon/pages/AboutPage") 
     },
     { 
-        path: '/id',
-        component: () => import(/* webpackChunkName: "PokemonPage"*/ "@/modules/pokemon/pages/PokemonPage") 
+        // with the : we defined id as an argument
+        path: '/:id',
+        name:'pokemon-id',
+        component: () => import(/* webpackChunkName: "PokemonPage"*/ "@/modules/pokemon/pages/PokemonPage"),
+        props:( route ) => {
+            // convertimos el id a Number
+            const  id  = Number(route.params.id)
+
+            // todo lo que retornamos van a ser properties siempre y cuando en el componente las tengamos definidas
+            // como el id en este caso; tenemos id en este return {} pero en los props del componente PokemonPage,
+            // tambien tenemos definido el id
+            return {
+                id: isNaN(id) ? 1 : id // si no es un numero mandamos 1 by default o si es mandamos el id
+            }
+        }
     },
     { 
         path:'/:pathMatch(.*)*',

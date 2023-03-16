@@ -17,7 +17,7 @@ const routes = [
     },
     { 
         // with the : we defined id as an argument
-        path: '/:id',
+        path: '/pokemon/:id',
         name:'pokemon-id',
         component: () => import(/* webpackChunkName: "PokemonPage"*/ "@/modules/pokemon/pages/PokemonPage"),
         props:( route ) => {

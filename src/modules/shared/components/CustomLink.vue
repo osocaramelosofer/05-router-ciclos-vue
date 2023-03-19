@@ -10,7 +10,7 @@
   <router-link
       v-else
       :to="route"
-      v-slot="{ href, isActive}"
+      v-slot="{ href, isActive }"
   >
     <!--    :href="href"-->
     <a

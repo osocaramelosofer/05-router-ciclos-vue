@@ -17,10 +17,12 @@ export const getPokemonsImage = async (pokeArray) => {
   const data = await Promise.all(pokemonsArray)
 
   const pokemonsFinal = data.map( pokemon =>{
-    return { "name": pokemon.data.name, "image": pokemon.data.sprites.front_default }
+    return {
+      "name": pokemon.data.name,
+      "image": pokemon.data.sprites.front_default,
+      "id": pokemon.data.id
+    }
   })
-
-  console.log("pokemons final=>",pokemonsFinal)
   return pokemonsFinal
 }
 

@@ -3,18 +3,23 @@
       <h1>List Page</h1>
 
       <ul ref="scrollComponent">
-        <li v-for="pokemon in pokemonsWithImages" :key="pokemon.image">
-          <span>{{ pokemon.name }}</span>
-          <img :src="pokemon.image" :alt="pokemon.name"/>
-        </li>
+        <template v-for="pokemon in pokemonsWithImages" :key="pokemon.image" >
+          <PokemonCard :pokemon-image="pokemon.image" :pokemon-name="pokemon.name" :pokemon-id="pokemon.id" />
+        </template>
       </ul>
     </div>
 </template>
 
 <script>
 import {loadPokemons, getPokemonsImage} from "@/helpers/getPokemons"
+import { defineAsyncComponent } from "vue";
 
 export default {
+  components:{
+    PokemonCard: defineAsyncComponent( ()=> import("../components/PokemonCard")),
+    PokemonCardSkeleton: defineAsyncComponent( ()=> import("../components/PokemonCardSkeleton"))
+
+  },
   data(){
     return{
       pokemons: [],
@@ -63,16 +68,5 @@ ul {
   margin: 0;
   padding: 0;
 }
-li {
-  background-color: rgb(254 249 195);
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  margin-inline: 20px;
-  margin-block: 10px;
-  border-radius: 8px;
-}
 </style>
